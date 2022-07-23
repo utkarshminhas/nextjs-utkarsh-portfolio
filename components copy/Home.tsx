@@ -1,4 +1,48 @@
-<script>
+import Image from 'next/image'
+var numberOfYears = 1
+var resume_download_link = "https://drive.google.com/uc?export=download&id=1dm-7iDC_VRb7grx7RMHNVCM3bzrJcQlW"
+
+function Home(){
+  return (
+     <div>
+      
+        <div className = 'flex flex-row items-center justify-center space-x-12 space-y-6 text-lg py-12 px-8'>
+          <div>
+            <h1 className="text-6xl font-bold mb-8">
+              Hi! I am {' '}<span className="text-blue-600">Utkarsh Minhas</span>
+            </h1> 
+           
+            {/* <p className = 'text-justify pb-4'>Hello 👋  . I am a Computer Science & Engineering graduate from SRMIST,Chennai(Batch of 2021). I have {numberOfYears} years of job experience. Currently I am working WFH at Valuelabs as a Technical consultant in the AI/ML Cognitive Ops practice group where we leverage the power of AI to build solutions. Previously, I have also worked at GAIUS Networks INC, a New York University startup as a mobile aplication developer intern (via flutter) for one year.</p> */}
+
+            <p className = 'text-justify pb-4'>Hello 👋  . I am a Computer Science & Engineering graduate from SRMIST,Chennai(Batch of 2021). I have {numberOfYears} years of job experience. Currently I am working WFH at Valuelabs as a Technical consultant in the AI/ML Cognitive Ops practice group where we leverage the power of AI to build solutions. Previously, I have also worked at GAIUS Networks INC, a New York University startup as a mobile aplication developer intern (via flutter) for one year.</p> 
+
+
+            <p className = 'text-justify'>I like to work in AI/ML/Deep Learning and data science. Automating and optimizing time consuming processes into just a few seconds via python is a close second when it comes to the things I enjoy via programming. I also have experience in app development frameworks such as Flutter to develop cross platform mobile apps in Android and IOS. I like to code in python, and am familiar with Java, C, C++ as well.  </p>
+            <br/>
+            <a href="https://github.com/utkarshminhas" className = 'font-semibold hover:underline hover:text-blue-600' target="_blank" rel="noopener noreferrer"> Click Here to know about my programming endeavors</a> 
+            
+          </div>
+          {/* <Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Coursera-Logo_600x600.svg/900px-Coursera-Logo_600x600.svg.png" alt="me" width="64" height="64"/> */}
+          <div className = 'mx-5'>
+            <Image src="/images/profile_pic_2.jpg" alt="It's me" width="1000/3" height="1200" className='rounded m-5'/>
+          </div>
+          {/* <Image src="/images/profile_pic_2.jpg" alt="me" layout = 'fill' className='rounded p-5'/> */}
+          
+        
+        
+      </div>
+      <div className = 'flex flex-row space-x-10 justify-center'>
+        <button className = 'bg-blue-600 text-white py-2 px-4 rounded'><a href="https://www.linkedin.com/in/utkarsh-minhas/" target="_blank" rel="noopener noreferrer">Linkedin</a></button>
+        <button className = 'bg-blue-600 text-white py-2 px-4 rounded'><a href="{resume_download_link}">Download CV</a></button>
+        <button className = 'bg-blue-600 text-white py-2 px-4 rounded '><a href="mailto:utkarsh0304@gmail.com" target="_blank" rel="noopener noreferrer">Contact Me</a></button>
+        <button className = 'bg-blue-600 text-white py-2 px-4 rounded'><a href="https://github.com/utkarshminhas" target="_blank" rel="noopener noreferrer">Github</a></button>
+      </div>
+      <br/>
+     </div>
+  )
+}
+export default Home
+{/* <script>
   import logo from './assets/svelte.png'
   import profile_pic_1 from './assets/profile_pic.jpg'
   import profile_pic_2 from './assets/profile_pic_2.jpg'
@@ -95,48 +139,9 @@
 
 
 </main>
-</Router>
+</Router> 
 
-<style>
-  :root {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    scroll-behavior: smooth;
-  }
-  main {
-    /* text-align: center; */
-    padding: 1em;
-    margin: 0 auto;
-  }
 
-  /* img {
-    height: 16rem;
-    width: 16rem;
-  } */
+STYLE TAG WAS REMOVED FROM HERE, look at the svelte repo to check it out
+*/}
 
-  /* h1 {
-    color: #ff3e00;
-    text-transform: uppercase;
-    font-size: 4rem;
-    font-weight: 100;
-    line-height: 1.1;
-    margin: 2rem auto;
-    max-width: 14rem;
-  } */
-
-  p {
-    max-width: 14rem;
-    margin: 1rem auto;
-    line-height: 1.35;
-  }
-
-  @media (min-width: 480px) {
-    /* h1 {
-      max-width: none;
-    } */
-
-    p {
-      max-width: none;
-    }
-  }
-</style>
