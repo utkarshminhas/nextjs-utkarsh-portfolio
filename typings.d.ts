@@ -5,25 +5,15 @@
 
 // }
 
-export interface intern_exp {
+export interface job_and_intern_exp {
     [index: number]: 
     { 
-        id: number;
-        label: string;
-        key: any ;
-        _createdAt : string;
-        _id : string;
-        _rev : string;
-        _type : string;
-        _updatedAt : string;
-        company_image : {
-
-        };
-        company_location : string;
-        company_name : string;
-        description : string;
-        end_time : string;
-        start_time : string;
+        company_name :string,
+        company_location :string,
+        description :string,
+        start_time :string,
+        end_time :string,
+        company_image_url :string,
     };
 }
 
@@ -36,7 +26,7 @@ export interface education {
         time_period : string,
         location : string,
         gpa : string,
-        Percentage : string,
+        percentage : string,
         imageUrl : string,
     }
 }

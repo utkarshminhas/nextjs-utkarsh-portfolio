@@ -4,14 +4,18 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Home from '../components/Home'
 import Education from '../components/Education'
+import Experience from '../components/Experience'
 import Footer2 from '../components/MyFooter'
 
-import {education} from '../typings'
+import {education,job_and_intern_exp} from '../typings'
+// import Experience from '../older_components/Experience'
 interface Props{
   education : [education]
+  intern_exp : [job_and_intern_exp],
+  job_exp : [job_and_intern_exp],
 }
 
-export default function HomePage ({education}:Props) {
+export default function HomePage ({education,intern_exp,job_exp}:Props,) {
   return (
     // <div className="flex min-h-screen flex-col items-center justify-center bg-blue-300">
     <div className="flex min-h-screen flex-col items-center justify-center">
@@ -28,6 +32,9 @@ export default function HomePage ({education}:Props) {
       <main className="flex w-full flex-1 flex-col p-5">
         <Home/>
         <Education education={education}/>
+        <Experience exp={intern_exp} type="Intern" />
+        <Experience exp={job_exp} type="Job" />
+
       </main>
 
       <Footer2/>
@@ -44,14 +51,36 @@ export const getServerSideProps = async()=>{
     time_period,
     location,
     gpa,
-    Percentage,
+    percentage,
     "imageUrl": image.asset->url,
   }`
   const education = await sanityClient.fetch(query)
+
+  query =  `*[_type =='intern_exp']{
+    company_name,
+    company_location,
+    description,
+    start_time,
+    end_time,
+    "company_image_url" : company_image.asset->url,
+  }`
+  const intern_exp = await sanityClient.fetch(query)
+
+  query =  `*[_type =='job_exp']{
+    company_name,
+    company_location,
+    description,
+    start_time,
+    end_time,
+    "company_image_url" : company_image.asset->url,
+  }`
+  const job_exp = await sanityClient.fetch(query)
   
   return {
     props:{
       education,
+      intern_exp,
+      job_exp
     }
   }
 }

@@ -38,7 +38,7 @@ export default function Education(
                   {education_item.institution_name.includes("Global") ?
                   <div>Secured : <span className = 'font-semibold'>{education_item.gpa}/10 GPA</span></div>
                   :
-                  <div>Secured : <span className = 'font-semibold'>{education_item.Percentage}%</span></div>
+                  <div>Secured : <span className = 'font-semibold'>{education_item.percentage}%</span></div>
                   }
                   
                   <div>{education_item.location} </div>

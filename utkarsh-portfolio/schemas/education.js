@@ -34,7 +34,7 @@ export default {
         type: 'string',
       },
       {
-        name: 'Percentage',
+        name: 'percentage',
         title: 'Percentage',
         type: 'string',
       },

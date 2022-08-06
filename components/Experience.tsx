@@ -1,104 +1,89 @@
+import Image from 'next/image'
 import { sanityClient,urlFor } from '../sanity'
-import {intern_exp} from '../typings'  
+import {job_and_intern_exp} from '../typings'
+
 interface Props{
-  intern_exps : [ intern_exp]
-  job_exps : [ intern_exp]
+  exp : [job_and_intern_exp]
+  type: string
 }
 
-let heading_style = 'capitalize text-sky-600 text-3xl  my-6 ml-12 bold'
-// underline underline-offset-3 decoration-3
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-var size = 96
-  
-// function ExperienceCard(){
-const ExperienceCard = ({exp}:Props)=>{
-    return (
-        <div className = "flex flex-row mt-2 mb-6 mx-12 items-center" >
-    {/* <input type="image" src={img_link} alt="background image" className = ' h-24 p-2 mb-2 mx-6 aspect-square'
-    /> */}
-        <img 
-            src={exp['logo']}
-            className = 'object-contain h-16 rounded-3xl mr-6'
-            width={size} height={size}
-            alt = ''/> 
-    <div className = 'flex flex-col'>
-        <p className='text-2xl font-semibold mb-1'>{exp['{company_name}']}</p>
-        <p>{exp['{description}']}</p>
-        <p className = 'italic font-semibold'>{exp['{time_period}']}</p>
-        
+function process_date(date_str:string){
+    if (typeof(date_str) == undefined || date_str==null){
+        return "Present"
+    }
+    console.log(date_str)
+    const date = new Date(date_str)
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    let month = months[date.getMonth()];
+    return month + " "+date.getFullYear()
+    }
+
+// function Education({education}:Props){
+export default function Education(
+  {exp,type}:Props,
+  ){
+    // console.log("EDUCATION")
+    // console.log(education)
+    // console.log("END")
+  return(
+    
+    <div>
+      <div className='text-blue-600 font-bold text-4xl md:text-4xl my-12'>
+        {type} experience
+      </div>
+
+      {exp.length < 1 ?(
+      <div>Loading...</div>
+      ):(
+        exp.reverse().map(exp_item =>(
+          // console.log(exp_item)
+          // 'flex flex-col items-center my-5 space-y-10 md:flex-row md:items-start   bg-cyan-200'
+            <div className = 'flex flex-col my-6 md:ml-4 md:flex-row md:items-center     md:space-x-6' key= {exp_item.company_name}> 
+              {/* <div className='relative h-32 w-32 bg-green-300'>
+                <Image src={exp_item.imageUrl} alt="It's me" layout='fill' objectFit='contain' className='rounded m-5'/>
+              </div>               */}
+              <Image src={exp_item.company_image_url} alt="It's me" height='128' width='128' objectFit='contain' className='rounded m-5 '/>
+              <div className = 'flex flex-col'>
+                <p className='text-2xl font-semibold mb-1'>{exp_item.company_name}</p>
+                <p>{exp_item.description}</p>
+                {/* (event.toLocaleDateString(undefined, { month: 'long'})); */}
+                <p className = 'italic font-semibold'>{process_date(exp_item.start_time)} - {process_date(exp_item.end_time)}</p>
+                {/* <p className = 'italic font-semibold'>start at {exp_item.start_time}</p> */}
+                
+            </div>
+            </div>
+          )
+        )
+      )}
     </div>
     
-    <hr/>
-</div>
-    )
+  )
 }
 
+export function exp_item(){
 
-function Experience({job_exps}:Props,{intern_exps}:Props){
-    return (
-        <div>
-            <div id = 'experience' className={`${heading_style} pt-16`}>Job Experience</div>
-
-            {job_exps.map(
-                    exp =>(
-                        <div className = "flex flex-row mt-2 mb-6 mx-12 items-center" >
-                        {/* <input type="image" src={img_link} alt="background image" className = ' h-24 p-2 mb-2 mx-6 aspect-square'
-                        /> */}
-                            <img 
-                                src={exp.logo}
-                                className = 'object-contain h-16 rounded-3xl mr-6'
-                                width={size} height={size}
-                                alt = ''/> 
-                        <div className = 'flex flex-col'>
-                            <p className='text-2xl font-semibold mb-1'>{exp['{company_name}']}</p>
-                            <p>{exp.description}</p>
-                            <p className = 'italic font-semibold'>{exp['{time_period}']}</p>
-                            
-                        </div>
-                        
-                        <hr/>
-                    </div>
-            ))}
-            
-            <div className = {heading_style}>Internship Experience</div>
-            
-            {intern_exps.map(
-                    intern_exp =>(
-                        <div>
-                            I made it intern
-                        </div>
-            ))}            
-            <br/>
-            
-        </div>
-    )
 }
 
-export default Experience
-// export default Blog1
+// export const getServerSideProps = async()=>{
 
-export const getServerSideProps = async()=>{
-
-
-    // var query = "*[_type =='certifications']";
-    // const certifications = await sanityClient.fetch(query)
-    // query = "*[_type =='research_exp']";
-    // const research_exp = await sanityClient.fetch(query)
-    var query = "*[_type =='intern_exp']";
-    const intern_exp = await sanityClient.fetch(query)
-    query = "*[_type =='job_exp']";
-    const job_exp = await sanityClient.fetch(query)
-    // query = "*[_type =='education']";
-    // const education = await sanityClient.fetch(query)
-    
-    return {
-      props:{
-        // certifications,
-        // research_exp,
-        intern_exp,
-        job_exp,
-        // education,
-      }
-    }
-  }
+//   // var query = "*[_type =='education']";
+//   var query =  `*[_type =='education']{
+//     institution_name,
+//     brief,
+//     description,
+//     time_period,
+//     location,
+//     gpa,
+//     Percentage,
+//     "imageUrl": image.asset->url,
+//   }`
+//   const education = await sanityClient.fetch(query)
   
+//   return {
+//     props:{
+//       education,
+//     }
+//   }
+// }
