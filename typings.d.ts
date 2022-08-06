@@ -26,3 +26,17 @@ export interface intern_exp {
         start_time : string;
     };
 }
+
+export interface education {
+    institution_name: ReactNode;
+    [index:number]:{
+        institution_name : string,
+        brief : string,
+        description : string,
+        time_period : string,
+        location : string,
+        gpa : string,
+        Percentage : string,
+        imageUrl : string,
+    }
+}

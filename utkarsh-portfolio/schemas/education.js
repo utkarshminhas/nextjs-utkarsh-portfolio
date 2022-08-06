@@ -29,10 +29,16 @@ export default {
         type: 'string',
       },
       {
-        name: 'gpa_percentage',
-        title: 'GPA or Percentage',
+        name: 'gpa',
+        title: 'GPA',
         type: 'string',
       },
+      {
+        name: 'Percentage',
+        title: 'Percentage',
+        type: 'string',
+      },
+      
       {
         name: 'image',
         title: 'Image',
