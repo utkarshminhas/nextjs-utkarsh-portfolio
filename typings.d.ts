@@ -18,7 +18,6 @@ export interface job_and_intern_exp {
 }
 
 export interface education {
-    institution_name: ReactNode;
     [index:number]:{
         institution_name : string,
         brief : string,
@@ -30,3 +29,31 @@ export interface education {
         imageUrl : string,
     }
 }
+
+
+export interface certification {
+    [index:number]:{
+        certification_name : string,
+        issued_by_name : string,
+        issued_by_image_url : string,
+        date_of_issue : string,
+        certificate_url : string,
+    }
+}
+
+export interface research_exp {
+    [index:number]:{
+        paper_name : string,
+        published_on : string,
+        first_online : string,
+        publisher : string,
+        conference_name : string,
+        conference_subtitle : string,
+        conference_dates : string,
+        paper_description : string,
+        link : string,
+        all_authors : string,
+        conference_image_url : string,
+    }
+}
+

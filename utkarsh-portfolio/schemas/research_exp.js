@@ -54,20 +54,20 @@ export default {
             title:"All authors",
             type: 'string',
         },
-    //   {
-    //     name: 'image',
-    //     title: 'Image',
-    //     type: 'image',
-    //     options: {
-    //       hotspot: true,
-    //     },
-    //   },
+      {
+        name: 'conference_image',
+        title: 'Conference Image',
+        type: 'image',
+        options: {
+          hotspot: true,
+        },
+      },
     ],
     preview: {
       select: {
         title: 'paper_name',
-        subtitle : 'all_authors'
-        // media: 'image',
+        subtitle : 'all_authors',
+        media: 'conference_image',
       },
     },
   }

@@ -31,7 +31,7 @@ export default function Education(
               {/* <div className='relative h-32 w-32 bg-green-300'>
                 <Image src={education_item.imageUrl} alt="It's me" layout='fill' objectFit='contain' className='rounded m-5'/>
               </div>               */}
-              <Image src={education_item.imageUrl} alt="It's me" height='128' width='128' objectFit='contain' className='rounded m-5 '/>
+              <Image src={education_item.imageUrl} alt="It's me" height='108' width='108' objectFit='contain' className='rounded m-5 '/>
               <div className = 'flex flex-col mt-6' >
                   <div className='text-2xl font-semibold'>{education_item.institution_name} </div>
                   <div className = 'font-semibold'>{education_item.brief}</div>

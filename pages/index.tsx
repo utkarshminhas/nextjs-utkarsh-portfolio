@@ -5,17 +5,20 @@ import Image from 'next/image'
 import Home from '../components/Home'
 import Education from '../components/Education'
 import Experience from '../components/Experience'
+import Certifications from '../components/Certifications'
 import Footer2 from '../components/MyFooter'
 
-import {education,job_and_intern_exp} from '../typings'
+import {education,job_and_intern_exp,certification,research_exp} from '../typings'
 // import Experience from '../older_components/Experience'
 interface Props{
   education : [education]
   intern_exp : [job_and_intern_exp],
   job_exp : [job_and_intern_exp],
+  certifications : [certification]
+  research_exps : [research_exp]
 }
 
-export default function HomePage ({education,intern_exp,job_exp}:Props,) {
+export default function HomePage ({education,intern_exp,job_exp,certifications,research_exps}:Props,) {
   return (
     // <div className="flex min-h-screen flex-col items-center justify-center bg-blue-300">
     <div className="flex min-h-screen flex-col items-center justify-center">
@@ -34,6 +37,7 @@ export default function HomePage ({education,intern_exp,job_exp}:Props,) {
         <Education education={education}/>
         <Experience exp={intern_exp} type="Intern" />
         <Experience exp={job_exp} type="Job" />
+        <Certifications certifications={certifications} />
 
       </main>
 
@@ -75,12 +79,39 @@ export const getServerSideProps = async()=>{
     "company_image_url" : company_image.asset->url,
   }`
   const job_exp = await sanityClient.fetch(query)
-  
+
+  query = `*[_type =='certifications']{
+    certification_name,
+    issued_by_name,
+    date_of_issue,
+    certificate_url,
+    "issued_by_image_url" : issued_by_image.asset->url,
+  }`
+
+  const certifications = await sanityClient.fetch(query)
+
+  query = `*[_type =='research_exp']{
+    paper_name,
+    published_on,
+    first_online,
+    publisher,
+    conference_name,
+    conference_subtitle,
+    conference_dates,
+    paper_description,
+    link,
+    all_authors,
+    "conference_image_url" : conference_image.asset->url
+    }`
+
+  const research_exps = await sanityClient.fetch(query)  
   return {
     props:{
       education,
       intern_exp,
-      job_exp
+      job_exp,
+      certifications,
+      research_exps
     }
   }
 }
